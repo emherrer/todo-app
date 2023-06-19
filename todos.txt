@@ -1,5 +1,4 @@
-tarea2
-play chess python
+tarea1
+play ludo
 soccer
-study
-crosfit
+cossfit
