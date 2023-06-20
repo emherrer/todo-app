@@ -1,4 +1,8 @@
 from functions import get_todos, write_todos
+import time
+
+now = time.strftime("%a, %d %b %Y %H:%M:%S")
+print(f"The actual date is: {now}")
 
 while True:
     user_action = input("Type: add, show, edit, complete or exit: ")
@@ -59,5 +63,4 @@ while True:
         print("Command is not valid!")
 
 
-print("Bye!!")
-print(todos)
+print("Bye!! Have a nice day!!")
