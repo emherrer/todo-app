@@ -1,4 +1,4 @@
 tarea1
-play ludo
-soccer
+tarea2
 cossfit
+dormir

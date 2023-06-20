@@ -1,3 +1,17 @@
+def get_todos(filepath="todos.txt"):
+    """Read a text file and return the list of
+     to-do items."""
+    with open(filepath, "r") as file_local:
+        todos_local = file_local.readlines()
+    return todos_local
+
+
+def write_todos(todo_lst, filepath="todos.txt"):
+    """Write the to-do items list in the text file."""
+    with open(filepath, "w") as file_local:
+        file_local.writelines(todo_lst)
+
+
 while True:
     user_action = input("Type: add, show, edit, complete or exit: ")
     user_action = user_action.strip()
@@ -5,17 +19,14 @@ while True:
     if user_action.startswith("add"):
         todo = user_action[4:] + "\n"
 
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         todos.append(todo)
 
-        with open("todos.txt", "w") as file:
-            file.writelines(todos)
+        todos = write_todos(todos)
 
     elif user_action.startswith("show"):
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         for idx, item in enumerate(todos):
             item = item.strip("\n")
@@ -25,34 +36,32 @@ while True:
         try:
             number = int(user_action[5:])
 
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             new_todo = input("Enter new todo: ") + "\n"
             todos[number - 1] = new_todo
 
-            with open("todos.txt", "w") as file:
-                file.writelines(todos)
+            todos = write_todos(todos)
+
         except ValueError:
-            print("Your command is not valid. Please enter a digit!")
+            print("Your command is not valid. Please enter the corresponding digit!")
             continue
 
     elif user_action.startswith("complete"):
         try:
             number = int(user_action[9:])
 
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             todo_removed = todos[number-1].strip("\n")
             todos.pop(number-1)
 
-            with open("todos.txt", "w") as file:
-                file.writelines(todos)
+            todos = write_todos(todos)
 
-            print(f"Todo {todo_removed} was removed from the list.")
+            print(f"Todo '{todo_removed}' was removed from the list.")
+
         except ValueError:
-            print("Your command is not valid. Please enter a digit!")
+            print("Your command is not valid. Please enter the corresponding digit!")
             continue
 
     elif user_action.startswith("exit"):
