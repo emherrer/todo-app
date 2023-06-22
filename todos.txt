@@ -1,2 +1,4 @@
 tarea1
 tarea2
+cocinar
+lavar
