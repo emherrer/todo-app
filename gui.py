@@ -30,12 +30,12 @@ while True:
         
         todos = functions.get_todos()
         index = todos.index(todo_to_edit)
-        todos[index] = new_todo
+        todos[index] = new_todo + "\n"
         functions.write_todos(todos)
         window["todos"].update(values=todos)
     
     elif event == "todos":
-        window["todo"].update(value=values["todos"][0])
+        window["todo"].update(value=values["todos"][0].strip("\n"))
     
     elif event == sg.WIN_CLOSED:
         break
