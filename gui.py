@@ -2,7 +2,7 @@ import functions
 import PySimpleGUI as sg
 import time
 
-sg.theme("Black")
+sg.theme("DarkTeal12")
 
 clock = sg.Text("", key="clock")
 label = sg.Text("Type in a to-do")
@@ -59,8 +59,11 @@ while True:
         break
 
     elif event == "todos":
-        window["todo"].update(value=values["todos"][0].strip("\n"))
-
+        try:
+            window["todo"].update(value=values["todos"][0].strip("\n"))
+        except IndexError:
+            sg.popup("Please add an item.", font=("Helvetica", 20))
+            
     elif event == sg.WIN_CLOSED:
         break
 
